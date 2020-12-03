@@ -1,0 +1,304 @@
+* Day 1: Report repair
+
+** Input
+
+Puzzle Input is hidden.
+
+#+name: input_data
+#+begin_example :exports none
+1228
+1584
+1258
+1692
+1509
+1927
+1177
+1854
+1946
+1815
+1925
+1531
+1529
+1920
+1576
+1392
+1744
+1937
+1636
+1615
+1944
+1949
+1931
+1253
+1587
+1860
+1874
+1611
+2008
+1182
+1900
+1515
+1978
+1996
+116
+1588
+1322
+1680
+1174
+1712
+1513
+1778
+1443
+1569
+1453
+708
+1783
+1926
+1959
+2001
+1776
+1643
+1654
+1934
+1983
+1630
+1382
+1486
+1422
+1836
+1728
+1315
+1843
+1521
+1995
+1403
+1897
+1280
+1981
+1901
+1870
+1519
+1945
+1857
+591
+1329
+1954
+1679
+1726
+1846
+1709
+1695
+1293
+1602
+1665
+1940
+1921
+1861
+1710
+1524
+1303
+1849
+1742
+1892
+1913
+1530
+1484
+1903
+1545
+1609
+1652
+1908
+1923
+1188
+1649
+1994
+1790
+1832
+140
+867
+1664
+1598
+1371
+1018
+35
+1833
+1161
+1898
+1482
+1767
+1252
+1882
+1448
+1032
+1459
+1661
+1391
+1770
+1806
+1465
+1295
+1546
+1355
+1358
+1321
+1368
+1514
+1756
+1775
+1957
+1468
+1975
+631
+1812
+1151
+1167
+1251
+1960
+1991
+1972
+1936
+1552
+1419
+1577
+1549
+1580
+1974
+1830
+1813
+1893
+1492
+1389
+1454
+1522
+1556
+1172
+1653
+1822
+1328
+1907
+1999
+1281
+1912
+1919
+1896
+1722
+1341
+1720
+1201
+1512
+1298
+1254
+1947
+1505
+1594
+1334
+1592
+1943
+1405
+1589
+1263
+1930
+1736
+1180
+1984
+1401
+1340
+1292
+1979
+1876
+#+end_example
+
+#+RESULTS:
+
+
+
+** Part: One
+
+*** Story
+
+After saving Christmas five years in a row, you've
+decided to take a vacation at a nice resort on a tropical island. Surely,
+Christmas will go on without you.
+
+The tropical island has its own currency and is entirely cash-only. The gold
+coins used there have a little picture of a starfish; the locals just call them
+stars. None of the currency exchanges seem to have heard of them, but somehow,
+you'll need to find fifty of these coins by the time you arrive so you can pay
+the deposit on your room.
+
+To save your vacation, you need to get all fifty stars by December 25th.
+
+Collect stars by solving puzzles. Two puzzles will be made available on each day
+in the Advent calendar; the second puzzle is unlocked when you complete the
+first. Each puzzle grants one star. Good luck!
+
+Before you leave, the Elves in accounting just need you to fix your expense
+report (your puzzle input); apparently, something isn't quite adding up.
+
+Specifically, they need you to find the two entries that sum to 2020 and then
+multiply those two numbers together.
+
+For example, suppose your expense report contained the following:
+
+1721 979 366 299 675 1456 In this list, the two entries that sum to 2020 are
+1721 and 299. Multiplying them together produces 1721 * 299 = 514579, so the
+correct answer is 514579.
+
+Of course, your expense report is much larger. Find the two entries that sum to
+2020; what do you get if you multiply them together?
+
+
+*** Code
+
+#+header: :var input_data=input_data
+#+begin_src python :results verbatim replace output :exports both
+entries = map(int, input_data.splitlines())
+seen = dict()
+for entry in entries:
+    seen[2020-entry] = True
+    if entry in seen.keys():
+        print(entry * (2020 - entry))
+#+end_src
+
+#+RESULTS:
+: 876459
+
+** Part: Two
+
+*** Story
+
+The Elves in accounting are thankful for your help; one of them even offers you
+a starfish coin they had left over from a past vacation. They offer you a second
+one if you can find three numbers in your expense report that meet the same
+criteria.
+
+Using the above example again, the three entries that sum to 2020 are 979, 366,
+and 675. Multiplying them together produces the answer, 241861950.
+
+In your expense report, what is the product of the three entries that sum to
+2020?
+
+*** Code
+
+#+header: :var input_data=input_data
+#+begin_src python :results replace output :exports both
+entries = list(map(int, input_data.splitlines()))
+for x in entries:
+    for y in entries:
+        for z in entries:
+            if x+y+z == 2020:
+                print(x*y*z)
+#+end_src
+
+#+RESULTS:
+: 116168640
+: 116168640
+: 116168640
+: 116168640
+: 116168640
+: 116168640
+
+** Resources
+
+[[https://adventofcode.com/2020/day/1][Advent of Code Day 1]]
+
